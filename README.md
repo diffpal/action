@@ -1,6 +1,17 @@
 # DiffPal Review GitHub Action
 
-Run DiffPal pull request review from GitHub Actions. The action installs the DiffPal CLI from npm by default, then runs `diffpal review github` with the pull request base and head revisions.
+GitHub Actions wrapper for DiffPal, the open-source, provider-agnostic AI review
+system for pull requests.
+
+The action installs the DiffPal CLI from npm by default, then runs
+`diffpal review github` with the pull request base and head revisions. It gives
+GitHub teams a portable AI review workflow without requiring a hosted DiffPal
+service or per-seat review platform. Bring the provider recipe you want to use;
+the review flow stays the same.
+
+- Main DiffPal CLI repo: <https://github.com/diffpal/diffpal>
+- GitHub Action package: `diffpal/action@v1`
+- CLI package: <https://www.npmjs.com/package/@diffpal/diffpal>
 
 ## Quick Start
 
@@ -113,7 +124,6 @@ they configure.
 | Input | Default | CLI flag |
 | --- | --- | --- |
 | `language` | empty | `--language` |
-| `review-checks` | empty | `--review-checks` |
 | `instructions` | empty | `--instructions` |
 | `instructions-file` | empty | `--instructions-file` |
 
@@ -122,13 +132,13 @@ they configure.
 | Input | Default | CLI flag |
 | --- | --- | --- |
 | `max-files` | empty | `--max-files` |
-| `context-lines` | empty | `--context-lines` |
-| `max-patch-chars` | empty | `--max-patch-chars` |
-| `max-files-per-chunk` | empty | `--max-files-per-chunk` |
 
 ## Provider Setup
 
-DiffPal delegates review work to the provider configured in your DiffPal config. Install and authenticate the provider CLI before this action step. The example above uses Codex ACP. Any ACP-compatible CLI can be used when your `.config/diffpal/config.yaml` points to it.
+DiffPal delegates review work to the provider configured in your DiffPal config.
+Install and authenticate the provider CLI before this action step. The example
+above uses Codex ACP. Any ACP-compatible CLI can be used when your
+`.config/diffpal/config.yaml` points to it.
 
 The onboarding wizard supports these setup recipes:
 
@@ -139,7 +149,8 @@ The onboarding wizard supports these setup recipes:
 | `copilot-github-token` | CI authenticates Copilot with a fine-grained GitHub token. |
 | `generic-acp` | You already have another ACP-compatible CLI. |
 
-Full setup docs and CI examples live in the main repository: <https://github.com/diffpal/diffpal>.
+Full setup docs and CI examples live in the main repository:
+<https://github.com/diffpal/diffpal>.
 
 ## Permissions
 
@@ -152,4 +163,5 @@ permissions:
   checks: write
 ```
 
-Keep provider secrets available only to trusted workflows. For pull requests, use a same-repository guard when secrets are required.
+Keep provider secrets available only to trusted workflows. For pull requests,
+use a same-repository guard when secrets are required.

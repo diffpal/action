@@ -71,24 +71,8 @@ inputs:
     description: Maximum files from diff.
     required: false
     default: ""
-  context-lines:
-    description: Context lines to enrich each changed file.
-    required: false
-    default: ""
-  max-patch-chars:
-    description: Maximum context characters per chunk.
-    required: false
-    default: ""
-  max-files-per-chunk:
-    description: Maximum files per context chunk.
-    required: false
-    default: ""
   language:
     description: Language for generated review findings.
-    required: false
-    default: ""
-  review-checks:
-    description: "Comma-separated checks to run: security, bugs, performance, best-practices."
     required: false
     default: ""
   instructions:
@@ -127,11 +111,7 @@ runs:
         INPUT_REVIEW_ID: ${{ inputs.review-id }}
         INPUT_REVIEW_CHANNEL: ${{ inputs.review-channel }}
         INPUT_MAX_FILES: ${{ inputs.max-files }}
-        INPUT_CONTEXT_LINES: ${{ inputs.context-lines }}
-        INPUT_MAX_PATCH_CHARS: ${{ inputs.max-patch-chars }}
-        INPUT_MAX_FILES_PER_CHUNK: ${{ inputs.max-files-per-chunk }}
         INPUT_LANGUAGE: ${{ inputs.language }}
-        INPUT_REVIEW_CHECKS: ${{ inputs.review-checks }}
         INPUT_INSTRUCTIONS: ${{ inputs.instructions }}
         INPUT_INSTRUCTIONS_FILE: ${{ inputs.instructions-file }}
       run: ${{ github.action_path }}/scripts/run-diffpal-review.sh

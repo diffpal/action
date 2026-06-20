@@ -72,20 +72,8 @@ fi
 if [[ -n "${INPUT_MAX_FILES:-}" ]]; then
   argv+=(--max-files "$INPUT_MAX_FILES")
 fi
-if [[ -n "${INPUT_CONTEXT_LINES:-}" ]]; then
-  argv+=(--context-lines "$INPUT_CONTEXT_LINES")
-fi
-if [[ -n "${INPUT_MAX_PATCH_CHARS:-}" ]]; then
-  argv+=(--max-patch-chars "$INPUT_MAX_PATCH_CHARS")
-fi
-if [[ -n "${INPUT_MAX_FILES_PER_CHUNK:-}" ]]; then
-  argv+=(--max-files-per-chunk "$INPUT_MAX_FILES_PER_CHUNK")
-fi
 if [[ -n "${INPUT_LANGUAGE:-}" ]]; then
   argv+=(--language "$INPUT_LANGUAGE")
-fi
-if [[ -n "${INPUT_REVIEW_CHECKS:-}" ]]; then
-  argv+=(--review-checks "$INPUT_REVIEW_CHECKS")
 fi
 if [[ -n "${INPUT_INSTRUCTIONS:-}" ]]; then
   argv+=(--instructions "$INPUT_INSTRUCTIONS")
