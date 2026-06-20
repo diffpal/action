@@ -67,10 +67,6 @@ inputs:
     description: GitHub publishing channel for check runs and summary comments.
     required: false
     default: diffpal
-  max-files:
-    description: Maximum files from diff.
-    required: false
-    default: ""
   language:
     description: Language for generated review findings.
     required: false
@@ -110,7 +106,6 @@ runs:
         INPUT_REPO: ${{ inputs.repo }}
         INPUT_REVIEW_ID: ${{ inputs.review-id }}
         INPUT_REVIEW_CHANNEL: ${{ inputs.review-channel }}
-        INPUT_MAX_FILES: ${{ inputs.max-files }}
         INPUT_LANGUAGE: ${{ inputs.language }}
         INPUT_INSTRUCTIONS: ${{ inputs.instructions }}
         INPUT_INSTRUCTIONS_FILE: ${{ inputs.instructions-file }}

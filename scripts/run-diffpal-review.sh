@@ -69,9 +69,6 @@ fi
 if [[ -n "${INPUT_REVIEW_CHANNEL:-}" ]]; then
   argv+=(--review-channel "$INPUT_REVIEW_CHANNEL")
 fi
-if [[ -n "${INPUT_MAX_FILES:-}" ]]; then
-  argv+=(--max-files "$INPUT_MAX_FILES")
-fi
 if [[ -n "${INPUT_LANGUAGE:-}" ]]; then
   argv+=(--language "$INPUT_LANGUAGE")
 fi

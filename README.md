@@ -127,12 +127,6 @@ they configure.
 | `instructions` | empty | `--instructions` |
 | `instructions-file` | empty | `--instructions-file` |
 
-### Review Limits
-
-| Input | Default | CLI flag |
-| --- | --- | --- |
-| `max-files` | empty | `--max-files` |
-
 ## Provider Setup
 
 DiffPal delegates review work to the provider configured in your DiffPal config.
