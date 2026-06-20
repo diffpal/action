@@ -119,6 +119,9 @@ they configure.
 | `review-channel` | `diffpal` | `--review-channel` |
 | `out` | empty | `--out` |
 
+The exact `feedback` behavior is owned by the installed DiffPal CLI version.
+Pin `diffpal-version` when you want rollout-safe, reproducible review behavior.
+
 ### Review Tuning
 
 | Input | Default | CLI flag |

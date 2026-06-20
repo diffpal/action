@@ -44,7 +44,7 @@ inputs:
     required: false
     default: ""
   feedback:
-    description: Review feedback shape. Use summary, balanced, or inline.
+    description: Review feedback shape passed to diffpal review github. Pin diffpal-version for reproducible behavior across CLI releases.
     required: false
     default: balanced
   summary-overview:
