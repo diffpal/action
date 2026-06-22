@@ -45,7 +45,6 @@ jobs:
     permissions:
       contents: read
       pull-requests: write
-      checks: write
     steps:
       - uses: actions/checkout@v6
         with:
@@ -71,7 +70,7 @@ jobs:
           head: ${{ github.event.pull_request.head.sha }}
           repo: ${{ github.repository }}
           review-id: github-pr-${{ github.event.pull_request.number }}
-          feedback: balanced
+          feedback: review
           gate: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -113,8 +112,7 @@ they configure.
 | --- | --- | --- |
 | `gate` | `false` | `--gate` |
 | `block-on` | `high` | `--block-on` |
-| `mode` | empty | `--mode` |
-| `feedback` | `balanced` | `--feedback` |
+| `feedback` | `review` | `--feedback` |
 | `summary-overview` | `true` | `--summary-overview` |
 | `review-channel` | `diffpal` | `--review-channel` |
 | `out` | empty | `--out` |
@@ -157,7 +155,6 @@ Use these permissions when publishing PR feedback:
 permissions:
   contents: read
   pull-requests: write
-  checks: write
 ```
 
 Keep provider secrets available only to trusted workflows. For pull requests,
