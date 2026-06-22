@@ -39,14 +39,10 @@ inputs:
     description: Return non-zero when blocking findings exist.
     required: false
     default: "false"
-  mode:
-    description: Comma-separated GitHub publish modes.
-    required: false
-    default: ""
   feedback:
     description: Review feedback shape passed to diffpal review github. Pin diffpal-version for reproducible behavior across CLI releases.
     required: false
-    default: balanced
+    default: review
   summary-overview:
     description: Include a semantic change overview in review summaries.
     required: false
@@ -64,7 +60,7 @@ inputs:
     required: false
     default: ""
   review-channel:
-    description: GitHub publishing channel for check runs and summary comments.
+    description: GitHub publishing channel for summary comments.
     required: false
     default: diffpal
   language:
@@ -99,7 +95,6 @@ runs:
         INPUT_PROFILE: ${{ inputs.profile }}
         INPUT_BLOCK_ON: ${{ inputs.block-on }}
         INPUT_GATE: ${{ inputs.gate }}
-        INPUT_MODE: ${{ inputs.mode }}
         INPUT_FEEDBACK: ${{ inputs.feedback }}
         INPUT_SUMMARY_OVERVIEW: ${{ inputs.summary-overview }}
         INPUT_OUT: ${{ inputs.out }}
