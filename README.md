@@ -96,6 +96,7 @@ they configure.
 | --- | --- | --- |
 | `config-dir` | empty | `--config-dir` |
 | `profile` | empty | `--profile` |
+| `debug` | `false` | `--debug` |
 
 ### Review Target
 

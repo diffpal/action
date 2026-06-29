@@ -75,6 +75,10 @@ inputs:
     description: Path to additional review instructions.
     required: false
     default: ""
+  debug:
+    description: Pass --debug to DiffPal.
+    required: false
+    default: ""
 runs:
   using: composite
   steps:
@@ -104,4 +108,5 @@ runs:
         INPUT_LANGUAGE: ${{ inputs.language }}
         INPUT_INSTRUCTIONS: ${{ inputs.instructions }}
         INPUT_INSTRUCTIONS_FILE: ${{ inputs.instructions-file }}
+        INPUT_DEBUG: ${{ inputs.debug }}
       run: ${{ github.action_path }}/scripts/run-diffpal-review.sh
