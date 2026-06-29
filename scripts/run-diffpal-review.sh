@@ -43,6 +43,9 @@ fi
 if [[ -n "${INPUT_PROFILE:-}" ]]; then
   argv+=(--profile "$INPUT_PROFILE")
 fi
+if truthy "${INPUT_DEBUG:-false}"; then
+  argv+=(--debug)
+fi
 
 argv+=(review github --base "$INPUT_BASE" --head "$INPUT_HEAD")
 

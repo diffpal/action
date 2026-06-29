@@ -153,6 +153,24 @@ test_wrapper_uses_installed_binary_and_feedback() {
   assert_contains "$argv" "diffpal-dev"
 }
 
+test_wrapper_forwards_debug_input() {
+  local dir="$1"
+  local bin_dir="$dir/debug-bin"
+  local argv="$dir/argv-debug"
+  mkdir -p "$bin_dir"
+  make_fake_diffpal "$bin_dir"
+
+  PATH="$bin_dir:$PATH" \
+    DIFFPAL_ARGV_FILE="$argv" \
+    DIFFPAL_BIN=diffpal \
+    INPUT_BASE=base-sha \
+    INPUT_HEAD=head-sha \
+    INPUT_DEBUG=true \
+    "$repo_root/scripts/run-diffpal-review.sh"
+
+  assert_contains "$argv" "--debug"
+}
+
 test_wrapper_can_disable_summary_overview() {
   local dir="$1"
   local bin_dir="$dir/overview-bin"
@@ -235,6 +253,7 @@ test_installer_installs_requested_version "$tmpdir/install"
 test_installer_selects_custom_path "$tmpdir/custom"
 test_installer_selects_path_when_install_disabled "$tmpdir/disabled"
 test_wrapper_uses_installed_binary_and_feedback "$tmpdir/wrapper-installed"
+test_wrapper_forwards_debug_input "$tmpdir/wrapper-debug"
 test_wrapper_can_disable_summary_overview "$tmpdir/wrapper-overview"
 test_wrapper_prints_gate_annotation_for_blocked_exit_code "$tmpdir/wrapper-gate"
 test_wrapper_keeps_non_gate_failures_generic "$tmpdir/wrapper-generic"
