@@ -9,18 +9,18 @@ jobs:
   smoke:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
       - name: Smoke test action scripts
         run: bash scripts/smoke-test.sh
 
       - name: Check out DiffPal CLI contract
-        uses: actions/checkout@v6
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
         with:
           repository: diffpal/diffpal
           ref: develop
           path: .tmp/diffpal
 
-      - uses: actions/setup-go@v6
+      - uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6
         with:
           go-version-file: .tmp/diffpal/go.mod
 

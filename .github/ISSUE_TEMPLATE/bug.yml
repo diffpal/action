@@ -1,0 +1,25 @@
+name: Bug report
+description: Report a reproducible action defect
+title: "bug: "
+labels: [bug]
+body:
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Observed behavior
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Minimal workflow and logs
+      description: Remove credentials and private source before posting.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Action reference
+      placeholder: diffpal/action@v1 or commit SHA
+    validations:
+      required: true
