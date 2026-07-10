@@ -97,7 +97,46 @@ SCRIPT
     "$repo_root/scripts/install-diffpal.sh"
 
   assert_contains "$npm_args" "@diffpal/diffpal@0.1.2"
+  assert_contains "$npm_args" "--ignore-scripts"
   assert_contains "$github_env" "DIFFPAL_BIN=$runner_temp/diffpal-action/bin/diffpal"
+}
+
+test_installer_defaults_to_cli_v1() {
+  local dir="$1"
+  local fake_bin="$dir/fake-bin"
+  local runner_temp="$dir/runner"
+  local github_env="$dir/github-env"
+  local npm_args="$dir/npm-args"
+  mkdir -p "$fake_bin" "$runner_temp"
+
+  cat > "$fake_bin/npm" <<'SCRIPT'
+#!/usr/bin/env bash
+printf '%s\n' "$@" > "$NPM_ARGV_FILE"
+prefix=""
+while [[ "$#" -gt 0 ]]; do
+  if [[ "$1" == "--prefix" ]]; then
+    prefix="$2"
+    shift 2
+    continue
+  fi
+  shift
+done
+mkdir -p "$prefix/bin"
+printf '#!/usr/bin/env bash\nexit 0\n' > "$prefix/bin/diffpal"
+chmod +x "$prefix/bin/diffpal"
+SCRIPT
+  chmod +x "$fake_bin/npm"
+
+  PATH="$fake_bin:$PATH" \
+    RUNNER_TEMP="$runner_temp" \
+    GITHUB_ENV="$github_env" \
+    NPM_ARGV_FILE="$npm_args" \
+    INPUT_INSTALL=true \
+    INPUT_DIFFPAL_PATH=diffpal \
+    "$repo_root/scripts/install-diffpal.sh"
+
+  assert_contains "$npm_args" "@diffpal/diffpal@1"
+  assert_contains "$npm_args" "--ignore-scripts"
 }
 
 test_installer_selects_custom_path() {
@@ -250,6 +289,7 @@ tmpdir="$(mktemp -d)"
 trap 'rm -rf "$tmpdir"' EXIT
 
 test_installer_installs_requested_version "$tmpdir/install"
+test_installer_defaults_to_cli_v1 "$tmpdir/default-v1"
 test_installer_selects_custom_path "$tmpdir/custom"
 test_installer_selects_path_when_install_disabled "$tmpdir/disabled"
 test_wrapper_uses_installed_binary_and_feedback "$tmpdir/wrapper-installed"

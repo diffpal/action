@@ -18,7 +18,7 @@ the review flow stays the same.
 First generate and commit a DiffPal config:
 
 ```bash
-npx -y @diffpal/diffpal@latest init --wizard --setup codex-api-key --platform github
+npx -y @diffpal/diffpal@1.0.0 init --wizard --setup codex-api-key --platform github
 ```
 
 This creates `.config/diffpal/config.yaml` with a visible `ci` profile. Existing
@@ -87,7 +87,7 @@ they configure.
 | Input | Default | Use |
 | --- | --- | --- |
 | `install` | `true` | Install `@diffpal/diffpal` before review. |
-| `diffpal-version` | `latest` | npm version or dist-tag. Pin for reproducible CI. |
+| `diffpal-version` | `1` | npm version or dist-tag. Use an exact v1 release for reproducible CI. |
 | `diffpal-path` | `diffpal` | Existing binary path. Custom paths skip install. |
 
 ### Config Selection
