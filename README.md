@@ -74,6 +74,14 @@ jobs:
           gate: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Retain DiffPal artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: diffpal-review
+          path: .artifacts/diffpal/
+          if-no-files-found: warn
 ```
 
 ## Inputs
